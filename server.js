@@ -1,68 +1,95 @@
 const express = require("express");
 const app = express();
-const bcrypt = require("bcryptjs");
-const uuid = require("uuid");
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const User = require("./models/User");
+const flash = require("connect-flash");
+const session = require("express-session");
 const connectDB = require("./config/db");
 connectDB();
 
-const users = [];
+require("./config/passport")(passport);
 
 app.set("view-engine", "ejs");
-
+app.use(express.static("views"));
 // body parser
 app.use(express.urlencoded({ extended: false }));
-//The local authentication strategy authenticates users using a username and password. The strategy requires a verify callback,
-// which accepts these credentials and calls done providing a user.
-passport.use(
-  new LocalStrategy(function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false);
-      }
-      if (!user.verifyPassword(password)) {
-        return done(null, false);
-      }
-      return done(null, user);
-    });
+// express-session
+app.use(
+  session({
+    secret: "chriswang0901",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000000 },
   })
 );
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect flash
+app.use(flash());
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
-app.get("/register", (req, res) => {
-  res.render("register.ejs");
-});
-app.post("/register", async (req, res) => {
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(req.body.password, salt);
-    const newUser = new User({
-      id: uuid.v1(),
-      name: req.body.name,
-      email: req.body.email,
-      password: hashPassword
-    });
-    await newUser.save();
 
-    res.redirect("/login");
-  } catch (error) {
-    console.error(error);
-    res.redirect("/register");
-  }
-  console.log(users);
-});
+app.use("/login", require("./routes/login"));
+app.use("/register", require("./routes/register"));
 
-app.get("/login", (req, res) => {
-  res.render("login.ejs");
+app.get("/home", (req, res) => {
+  res.render("home.ejs");
 });
-
-app.post("/login", async (req, res) => {});
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile"] })
+);
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/home",
+    failureRedirect: "/login",
+  })
+);
+app.get("/auth/facebook", passport.authenticate("facebook"));
+app.get(
+  "/auth/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: "/home",
+    failureRedirect: "/login",
+  })
+);
 
 app.listen(5000, () => console.log("Server starts on 5000"));
+
+// app.get("/login", (req, res) => {
+//   res.render("login.ejs");
+// });
+
+// app.post(
+//   "/login",
+
+//   (req, res) => {
+//     passport.authenticate("local", { failureRedirect: "/login", failureMessage: "fail!!" });
+//     res.redirect("/home");
+//   }
+// );
+// app.get("/register", (req, res) => {
+//   res.render("register.ejs");
+// });
+// app.post("/register", async (req, res) => {
+//   try {
+//     const salt = await bcrypt.genSalt(10);
+//     // const hashPassword = await bcrypt.hash(req.body.password, salt);
+//     const newUser = new User({
+//       id: uuid.v1(),
+//       name: req.body.name,
+//       email: req.body.email,
+//       password: req.body.password
+//     });
+//     await newUser.save();
+
+//     res.redirect("/login");
+//   } catch (error) {
+//     console.error(error);
+//     res.redirect("/register");
+//   }
+// });

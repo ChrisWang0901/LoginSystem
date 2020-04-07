@@ -1,3 +1,7 @@
 {
-  "mongoURI": "mongodb+srv://chriswang:chris0901@cluster0-nryfh.mongodb.net/test?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://chriswang:chris0901@cluster0-nryfh.mongodb.net/test?retryWrites=true&w=majority",
+  "GoogleClientID": "561051863100-bce3r7i58e6hobij7v0dk7cgkpib0sa4.apps.googleusercontent.com",
+  "GoogleSecret": "_i5DCyT9l4ut41-MDsuG2-Dy",
+  "FacebookClientID": "232257774814002",
+  "FacebookSecret": "67272dc619e07630f64f255eb3db378b"
 }

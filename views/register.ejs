@@ -1,4 +1,4 @@
-<h1>Register</h1>
+<!-- <h1>Register</h1>
 <form action="/register" method="POST">
   <div>
     <label for="name"> Name</label>
@@ -10,7 +10,126 @@
   </div>
   <div>
     <label for="password"> Password</label>
-    <input type="text" id="password" name="password" required />
+    <input sytle='display': none type="password" id="password" name="password"
+    required />
   </div>
   <button type="submit">Register</button>
-</form>
+</form> -->
+<!DOCTYPE html>
+
+<html class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Register</title>
+  </head>
+  <body>
+    <main class="register-main">
+      <div class="container">
+        <h2 class="blue-text text-darken-2 center-align">
+          <i class="material-icons medium prefix">sentiment_very_satisfied</i>
+          <span id="reg">Register</span>
+        </h2>
+      </div>
+      <div class="container blue-text">
+        <div class="col s12 m8 l6 xl4">
+          <form action="/register" method="POST">
+            <div class="input-field">
+              <i class="material-icons prefix">account_circle</i>
+              <input type="text" id="username" />
+              <label for="username">Username</label>
+            </div>
+            <div class="input-field">
+              <i class="material-icons prefix">email</i>
+              <input type="email" id="email" />
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field">
+              <i class="material-icons prefix">lock_outline</i>
+              <input type="password" id="password" />
+              <label for="password">Password</label>
+            </div>
+            <div class="input-field">
+              <i class="material-icons prefix">lock_outline</i>
+              <input type="password" id="password2" />
+              <label for="password2">Enter the password again</label>
+            </div>
+            <div class="input-field center">
+              <button class="btn blue white-text btn-medium" type="submit">
+                Register
+              </button>
+            </div>
+            <div class="input-field center white">
+              <d class="g">
+                <a href="test.html"
+                  ><img
+                    src="./images/google1.png"
+                    alt="google"
+                    class="responsive-img"
+                /></a>
+                <div
+                  class="fb-login-button"
+                  data-width="250px"
+                  data-size="large"
+                  data-button-type="continue_with"
+                  data-layout="default"
+                  data-auto-logout-link="false"
+                  data-use-continue-as="false"
+                ></div>
+              </d>
+            </div>
+
+            <div class="input-field center white"></div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- <div class="container blue-text center-align"> -->
+
+    <!-- </div> -->
+
+    <script src="" async defer></script>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=232257774814002&autoLogAppEvents=1"
+    ></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script
+      src="https://apis.google.com/js/platform.js?onload=renderButton"
+      async
+      defer
+    ></script>
+    <script>
+      function renderButton() {
+        gapi.signin2.render("my-signin2", {
+          scope: "profile email",
+          width: 240,
+          height: 50,
+          longtitle: true,
+          theme: "dark",
+          onsuccess: onSuccess,
+          onfailure: onFailure,
+        });
+      }
+    </script>
+  </body>
+</html>

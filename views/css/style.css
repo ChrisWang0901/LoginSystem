@@ -1,0 +1,71 @@
+:root {
+  --google-blue: #4285f4;
+  --button-active-blue: #1669f2;
+}
+.google-btn {
+  text-align: center;
+  position: relative;
+  max-width: 184px;
+  height: 42px;
+  background-color: var(--google-blue);
+  border-radius: 2px;
+  overflow: hidden;
+  /* box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25); */
+}
+.google-icon-wrapper {
+  position: absolute;
+  margin-top: 1px;
+  margin-left: 1px;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  background-color: white;
+}
+.google-icon {
+  position: absolute;
+  margin-top: 11px;
+  margin-left: 11px;
+  width: 18px;
+  height: 18px;
+}
+.btn-text {
+  float: right;
+  margin: 11px 11px 0 0;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+}
+.google-btn:hover {
+  box-shadow: 0 0 6px var(--google-blue);
+}
+.google-btn:active {
+  background: var(--button-active-blue);
+}
+.img1 {
+  display: block;
+}
+.input-field > .btn {
+  width: 100%;
+}
+.g {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.fb-login-button {
+  vertical-align: center;
+}
+#reg {
+  font-size: 44px;
+  line-height: 38px;
+}
+.material-icons {
+  /* display: inline-flex; */
+  vertical-align: top;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+.login-main {
+  max-width: 800px;
+  margin: 80px auto;
+}
