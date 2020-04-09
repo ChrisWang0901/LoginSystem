@@ -45,7 +45,16 @@
   display: block;
 }
 .input-field > .btn {
-  width: 100%;
+  width: 40%;
+  min-width: 240px;
+}
+.f-img {
+  width: 40%;
+  min-width: 250px;
+}
+.g-img {
+  width: 40%;
+  min-width: 250px;
 }
 .g {
   display: flex;
@@ -66,6 +75,6 @@
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .login-main {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 80px auto;
 }

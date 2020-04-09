@@ -16,8 +16,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
     secret: "chriswang0901",
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     cookie: { maxAge: 1000000 },
   })
 );
@@ -31,8 +31,18 @@ app.use(flash());
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
-
-app.use("/login", require("./routes/login"));
+app.get("/login", (req, res) => res.render("login.ejs"));
+app.post("/login", (req, res) => {
+  console.log(req.body);
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    failureMessage: "fail!!",
+    successRedirect: "/home",
+  });
+  res.send(req.body);
+  // res.redirect("/home");
+});
+// app.use("/login", require("./routes/login"));
 app.use("/register", require("./routes/register"));
 
 app.get("/home", (req, res) => {

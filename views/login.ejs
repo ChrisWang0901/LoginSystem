@@ -11,10 +11,8 @@
   <input type="submit" value="Login" />
 </form>
 <div id="google-log"><a href="auth/google">Google</a></div>
-<div id="facebook-log"><a href="/auth/facebook">Login with Facebook</a></div>
+<div id="facebook-log"><a href="/auth/facebook">Login with Facebook</a></div> -->
 
-
- -->
 <!DOCTYPE html>
 
 <html class="no-js">
@@ -53,51 +51,37 @@
           <i class="material-icons medium">lock</i> Login
         </h2>
       </div>
-      <div class="container blue-text">
-        <div class="col s12 m8 l6 xl4">
-          <form action="/login" method="POST">
-            <div class="input-field">
-              <i class="material-icons prefix">account_circle</i>
-              <input type="text" id="username" />
-              <label for="username">Username</label>
-            </div>
-            <div class="input-field">
-              <i class="material-icons prefix">lock_outline</i>
-              <input type="password" id="password" />
-              <label for="password">Password</label>
-            </div>
-            <div class="input-field center yellow">
-              <button class="btn blue white-text btn-medium" type="submit">
-                Sign in
-              </button>
-            </div>
-            <div class="input-field center white">
-              <d class="g">
-                <a href="auth/google"
-                  ><img src="images/google1.png" alt="" class="responsive-img"
-                /></a>
-                <a href="auth/facebook"
-                  ><img
-                    src="images/facebook1.png"
-                    alt=""
-                    class="responsive-img"
-                /></a>
-                <!-- <div
-                  class="fb-login-button"
-                  data-width="250px"
-                  data-size="medium"
-                  data-button-type="continue_with"
-                  data-layout="default"
-                  data-auto-logout-link="true"
-                  data-use-continue-as="true"
-                  onclick="auth-google"
-                ></a></div>
-              </d>
-            </div> -->
 
-            <div class="input-field center white"></div>
-          </form>
-        </div>
+      <div class="container blue-text">
+        <form action="/login" method="POST">
+          <div class="input-field">
+            <i class="material-icons prefix">account_circle</i>
+            <input type="text" id="username" name="username" />
+            <label for="username">Username</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">lock_outline</i>
+            <input type="password" id="password" name="password" />
+            <label for="password">Password</label>
+          </div>
+          <div class="input-field center">
+            <input
+              class="btn blue white-text btn-medium"
+              type="submit"
+              value="submit"
+            />
+          </div>
+          <div class="input-field center">
+            <a href="auth/google"
+              ><img src="images/google1.png" alt="" class="g-img"
+            /></a>
+          </div>
+          <div class="input-field center">
+            <a href="auth/facebook"
+              ><img src="images/facebook1.png" alt="" class="f-img"
+            /></a>
+          </div>
+        </form>
       </div>
     </main>
 

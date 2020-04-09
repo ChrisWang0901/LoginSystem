@@ -2,17 +2,16 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 router.get("/", (req, res) => res.render("login.ejs"));
-router.post(
-  "/",
-
-  (req, res) => {
-    passport.authenticate("local", {
-      failureRedirect: "/login",
-      failureMessage: "fail!!",
-    });
-    res.redirect("/home");
-  }
-);
+router.post("/", (req, res) => {
+  console.log(req.body);
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    failureMessage: "fail!!",
+    successRedirect: "/home",
+  });
+  res.send(req.body);
+  // res.redirect("/home");
+});
 // router.get(
 //   "/auth/google",
 //   passport.authenticate("google", { scope: ["profile"] })
