@@ -28,47 +28,63 @@ app.use(passport.session());
 // Connect flash
 app.use(flash());
 
-app.get("/", (req, res) => {
-  res.render("index.ejs");
+// Global variables
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  next();
 });
-app.get("/login", (req, res) => res.render("login.ejs"));
-app.post("/login", (req, res) => {
-  console.log(req.body);
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    failureMessage: "fail!!",
-    successRedirect: "/home",
-  });
-  res.send(req.body);
-  // res.redirect("/home");
-});
-// app.use("/login", require("./routes/login"));
-app.use("/register", require("./routes/register"));
 
-app.get("/home", (req, res) => {
-  res.render("home.ejs");
-});
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile"] })
-);
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/home",
-    failureRedirect: "/login",
-  })
-);
-app.get("/auth/facebook", passport.authenticate("facebook"));
-app.get(
-  "/auth/facebook/callback",
-  passport.authenticate("facebook", {
-    successRedirect: "/home",
-    failureRedirect: "/login",
-  })
-);
+// Routes
+app.get("/", (req, res) => res.render("index.ejs"));
+app.use("/users", require("./routes/login.js"));
 
-app.listen(5000, () => console.log("Server starts on 5000"));
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, console.log(`Server started on port ${PORT}`));
+
+// app.get("/", (req, res) => {
+//   res.render("index.ejs");
+// });
+// app.get("/login", (req, res) => res.render("login.ejs"));
+// app.post("/login", (req, res) => {
+//   console.log(req.body);
+//   passport.authenticate("local", {
+//     failureRedirect: "/login",
+//     failureMessage: "fail!!",
+//     successRedirect: "/home",
+//   });
+//   res.send(req.body);
+//   // res.redirect("/home");
+// });
+// // app.use("/login", require("./routes/login"));
+// app.use("/register", require("./routes/register"));
+
+// app.get("/home", (req, res) => {
+//   res.render("home.ejs");
+// });
+// app.get(
+//   "/auth/google",
+//   passport.authenticate("google", { scope: ["profile"] })
+// );
+// app.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     successRedirect: "/home",
+//     failureRedirect: "/login",
+//   })
+// );
+// app.get("/auth/facebook", passport.authenticate("facebook"));
+// app.get(
+//   "/auth/facebook/callback",
+//   passport.authenticate("facebook", {
+//     successRedirect: "/home",
+//     failureRedirect: "/login",
+//   })
+// );
+
+// app.listen(5000, () => console.log("Server starts on 5000"));
 
 // app.get("/login", (req, res) => {
 //   res.render("login.ejs");
