@@ -9,9 +9,11 @@ router.get("/", (req, res) => {
 });
 router.post("/", async (req, res) => {
   try {
+    console.log(req.body);
     const salt = await bcrypt.genSalt(10);
-    // const hashPassword = await bcrypt.hash(req.body.password, salt);
+    const hashPassword = await bcrypt.hash(req.body.password, salt);
     const user = await User.findOne({ email: req.body.email });
+    console.log(user);
     if (user) {
       console.log("user existed");
       res.redirect("/register");
@@ -19,7 +21,7 @@ router.post("/", async (req, res) => {
     const newUser = new User({
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,
+      password: hashPassword,
     });
     await newUser.save();
 

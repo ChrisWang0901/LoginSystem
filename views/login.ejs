@@ -1,4 +1,4 @@
-<h1>Login</h1>
+<!-- <h1>Login</h1>
 <form action="login" method="POST">
   <div>
     <label for="email"> Email</label>
@@ -11,9 +11,9 @@
   <input type="submit" value="Login" />
 </form>
 <div id="google-log"><a href="auth/google">Google</a></div>
-<div id="facebook-log"><a href="/auth/facebook">Login with Facebook</a></div>
+<div id="facebook-log"><a href="/auth/facebook">Login with Facebook</a></div> -->
 
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 
 <html class="no-js">
   <head>
@@ -21,9 +21,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
     <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Compiled and minified CSS -->
-    <!-- <link
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
@@ -36,35 +36,28 @@
     <link rel="stylesheet" href="css/style.css" />
     <title>Login</title>
   </head>
-  <body> -->
+  <body>
     <!-- <div id="fb-root"></div> -->
-    <!-- <script
-      async
-      defer
-      crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=232257774814002&autoLogAppEvents=1"
-    ></script>
-
     <main class="login-main">
       <div class="container">
         <h2 class="blue-text text-darken-2 center-align">
           <i class="material-icons medium">lock</i> Login
         </h2>
-      </div> -->
+      </div>
 
-      <!-- <div class="container blue-text">
+      <div class="container blue-text">
         <form action="/login" method="POST">
           <div class="input-field">
-            <i class="material-icons prefix">account_circle</i>
-            <input type="text" id="username" name="username" />
-            <label for="username">Username</label>
+            <i class="material-icons prefix">email</i>
+            <input type="email" id="email" name="email" />
+            <label for="email">Email</label>
           </div>
           <div class="input-field">
             <i class="material-icons prefix">lock_outline</i>
             <input type="password" id="password" name="password" />
             <label for="password">Password</label>
-          </div> -->
-          <!-- <div class="input-field center">
+          </div>
+          <div class="input-field center">
             <input
               class="btn blue white-text btn-medium"
               type="submit"
@@ -83,10 +76,13 @@
           </div>
         </form>
       </div>
-    </main> -->
+    </main>
 
+    <!-- <div class="container blue-text center-align"> -->
 
-    
+    <!-- </div> -->
+
+    <script src="" async defer></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script
@@ -94,6 +90,18 @@
       async
       defer
     ></script>
-    
+    <script>
+      function renderButton() {
+        gapi.signin2.render("my-signin2", {
+          scope: "profile email",
+          width: 240,
+          height: 50,
+          longtitle: true,
+          theme: "dark",
+          onsuccess: onSuccess,
+          onfailure: onFailure,
+        });
+      }
+    </script>
   </body>
 </html>
