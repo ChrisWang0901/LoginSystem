@@ -45,9 +45,9 @@ app.get("/", (req, res) => {
 app.use("/login", require("./routes/login"));
 app.use("/register", require("./routes/register"));
 
-app.get("/home", (req, res) => {
-  res.render("home.ejs");
-});
+// app.get("/home", (req, res) => {
+//   res.render("home.ejs");
+// });
 app.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["profile"] })
@@ -67,5 +67,8 @@ app.get(
     failureRedirect: "/login",
   })
 );
+app.get("/home", (req, res) => {
+  res.render("home.ejs", req.session.context);
+});
 
 app.listen(5000, () => console.log("Server starts on 5000"));

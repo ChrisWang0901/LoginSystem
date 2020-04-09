@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session");
 const router = express.Router();
 const passport = require("passport");
 const bycrypt = require("bcryptjs");
@@ -13,10 +14,11 @@ router.post("/", async (req, res) => {
       const verified = await bycrypt.compare(req.body.password, user.password);
       console.log(verified);
       if (verified) {
+        req.session.context = user;
         res.redirect("/home");
       }
     }
-    res.redirect("/login");
+    // res.redirect("/login");
   } catch (error) {
     console.error(error);
   }
