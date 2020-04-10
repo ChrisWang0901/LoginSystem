@@ -18,7 +18,6 @@ router.post("/", async (req, res) => {
         res.redirect("/home");
       }
     }
-    // res.redirect("/login");
   } catch (error) {
     console.error(error);
   }
