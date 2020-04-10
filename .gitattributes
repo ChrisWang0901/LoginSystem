@@ -1,2 +1,3 @@
-* linguist-vendored
-*.ejs linguist-vendored=false
+# * linguist-vendored
+# *.ejs linguist-vendored=false
+ *.* linguist-language=JavaScript
