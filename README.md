@@ -10,3 +10,8 @@ npm install
 ## Start
 
 npm start
+### Register
+http://localhost:5000/register
+
+### Login
+http://localhost:5000/login
